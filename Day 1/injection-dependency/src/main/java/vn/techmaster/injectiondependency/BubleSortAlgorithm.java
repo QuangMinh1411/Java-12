@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
-@Primary
+//@Primary
 public class BubleSortAlgorithm implements SortAlgorithm{
     public int[] sort(int[] numbers){
         int n = numbers.length;
