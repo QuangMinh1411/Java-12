@@ -6,7 +6,6 @@ import vn.techmaster.customerinfo.model.Customer;
 import vn.techmaster.customerinfo.model.CustomerPoJo;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
