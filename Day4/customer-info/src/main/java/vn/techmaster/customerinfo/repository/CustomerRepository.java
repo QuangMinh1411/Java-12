@@ -5,9 +5,7 @@ import vn.techmaster.customerinfo.mapper.CustomerMapper;
 import vn.techmaster.customerinfo.model.Customer;
 import vn.techmaster.customerinfo.model.CustomerPoJo;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Repository
@@ -15,9 +13,9 @@ public class CustomerRepository {
     private List<Customer> customers = new ArrayList<>();
 
     public CustomerRepository() {
-        customers.add(new Customer("Tom","tom@yahoo.com",12324L));
-        customers.add(new Customer("John","john@yahoo.com",12395L));
-        customers.add(new Customer("Mary","mary@yahoo.com",22327L));
+        customers.add(new Customer(1,"John","john@yahoo.com",12395L));
+        customers.add(new Customer(2,"Mary","mary@yahoo.com",22327L));
+        customers.add(new Customer(3,"Bill","bill@yahoo.com",22357L));
     }
     public List<Customer> getAll(){
         return customers;
@@ -41,6 +39,21 @@ public class CustomerRepository {
     }
     public Customer save(CustomerPoJo pojo){
         Customer customer = CustomerMapper.INSTANCE.pojoToCustomer(pojo);
+        Customer lastCustomer = customers.get(customers.size() - 1);
+        var id = lastCustomer.getId() + 1;
+        customer.setId(id);
+        customers.add(customer);
+        return customer;
+    }
+    public Customer create(Customer customer){
+        int id;
+        if (customers.isEmpty()) {
+            id = 1;
+        } else {
+            Customer lastCustomer = customers.get(customers.size() - 1);
+            id = lastCustomer.getId() + 1;
+        }
+        customer.setId(id);
         customers.add(customer);
         return customer;
     }
@@ -51,5 +64,21 @@ public class CustomerRepository {
             return customer.get();
         }
         return null;
+    }
+
+    public Customer findEmail(String email){
+        return customers.stream().filter(c->c.getEmail().contains(email)).findAny().orElse(null);
+    }
+
+    public List<Customer> sort(String direction){
+//        orderList.forEach(l-> System.out.println(l.getFullname()));
+        switch (direction){
+            case "asc":
+                return getAll().stream().sorted(Comparator.comparing(Customer::getFullname)).collect(Collectors.toList());
+            case "desc":
+                return getAll().stream().sorted(Comparator.comparing(Customer::getFullname).reversed()).collect(Collectors.toList());
+            default:
+                return getAll();
+        }
     }
 }

@@ -55,7 +55,7 @@ public class HomeController {
 
     @GetMapping("/services")
     public String getService() {
-        return "services";
+        return "service";
     }
 
 }
