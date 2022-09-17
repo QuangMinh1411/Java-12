@@ -20,9 +20,9 @@ public class PersonalController {
         personRepo = new PersonRepository();
     }
 
-    @GetMapping("/")
+    @GetMapping({"/","/index"})
     public String home() {
-        return "home";
+        return "index";
     }
 
     @GetMapping("/listAll")

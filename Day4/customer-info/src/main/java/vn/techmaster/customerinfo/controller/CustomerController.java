@@ -7,13 +7,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import vn.techmaster.customerinfo.mapper.CustomerMapper;
 import vn.techmaster.customerinfo.model.Customer;
-import vn.techmaster.customerinfo.model.CustomerPoJo;
 import vn.techmaster.customerinfo.repository.CustomerRepository;
-
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class CustomerController {

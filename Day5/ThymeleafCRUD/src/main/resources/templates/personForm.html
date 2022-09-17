@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="home::Heading"></head>
+<head th:replace="index::Heading"></head>
 <body>
     <div class="container">
+        <div th:replace="index::menu"></div>
         <h1 class="text-center">Personal Information Form</h1>
         <form th:action="@{/post}" method="POST" th:object="${person}">
             <input type="hidden" placeholder="id" th:field="*{id}"/><br><br>
