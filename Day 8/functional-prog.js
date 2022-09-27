@@ -9,7 +9,8 @@ let color_lawn = {
     rating
   });
 
-  console.log(rateColor(color_lawn, 5).rating);
+  // console.log(rateColor(color_lawn, 5).rating);
+  console.log(rateColor(color_lawn,4));
   
 let list = [{ title: "Rad Red" }, { title: "Lawn" }, { title: "Party Pink" }];
 // const addColor = (title, array) => array.concat({ title });
