@@ -37,7 +37,12 @@
       <h4 id="score">
         Total box:
         <span class="points"></span>
-        <input type="number" placeholder="number of box to add" name="number" />
+        <input
+          type="number"
+          placeholder="number of box to add"
+          name="number"
+          value="0"
+        />
       </h4>
 
       <div class="boxes"></div>
@@ -58,35 +63,39 @@
     const count = document.querySelector("#score");
     const boxElements = document.querySelector(".boxes");
     const add = document.querySelector("#btn");
-    function renderBox(arr) {
-      arr.forEach((item, i) => {
-        const div = document.createElement("div");
-        div.classList.add("box");
-        div.style.backgroundColor = getRandomColor();
-        div.textContent = item.name;
-        boxElements.appendChild(div);
-      });
-      count.firstChild.textContent = boxes.length;
-      console.log(arr);
-    }
-    function clearBox() {
-      boxElements.innerHTML = "";
-      count.firstChild.textContent = "0";
-      count.querySelector("input").value = "";
-    }
+
     renderBox(boxes);
     add.addEventListener("click", () => {
       const number = document.querySelector("#score input").value;
-      console.log(number);
       for (let i = 0; i < number; i++) {
         boxes.push({
           name: `Box${boxes.length + 1}`,
           color: getRandomColor(),
         });
       }
-
       clearBox();
       renderBox(boxes);
     });
+
+    function renderBox(arr) {
+      arr.forEach((item, i) => {
+        const div = document.createElement("div");
+        div.classList.add("box");
+        div.style.backgroundColor = getRandomColor();
+        div.textContent = item.name;
+        div.addEventListener("click", (e) => {
+          arr.splice(i, 1);
+          clearBox();
+          renderBox(arr);
+        });
+        boxElements.appendChild(div);
+      });
+      count.firstChild.textContent = arr.length;
+    }
+    function clearBox() {
+      boxElements.innerHTML = "";
+      count.firstChild.textContent = "0";
+      count.querySelector("input").value = "";
+    }
   </script>
 </html>
