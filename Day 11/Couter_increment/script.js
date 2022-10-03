@@ -8,7 +8,7 @@ counter.forEach(counter=>{
         const increment = target /200;
         if(c<target){
             counter.innerText=`${Math.ceil(c+increment)}`
-            setTimeout(updateCounter, 1);
+            setTimeout(updateCounter, 10);
         }else{
             counter.innerText=target;
         }
